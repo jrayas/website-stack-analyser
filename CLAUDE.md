@@ -47,6 +47,11 @@ without asking for confirmation first. `<site>` may be a bare domain or a full U
    transaction. It fills `sites`, `analysis_runs`, `dependencies`, `uncertainties`,
    `js_dependencies` (the package.json table), and `design_tokens` (the visual design system
    table) in one call.
+6. Run `python database/export_static.py` to regenerate `docs/data/*.json` and copy the new
+   report into `docs/reports/` so the deployed static site reflects this run.
+7. Commit and push (`git add -A && git commit && git push`) so GitHub Pages picks up the
+   update. The site is deployed at whatever URL `gh api repos/<owner>/<repo>/pages` reports
+   (GitHub Pages serving `docs/` on the default branch).
 6. Reset `website.md` back to its blank template afterwards, if it was used as scratch space for
    this run.
 7. Report back to the user: report file path, top findings with confidence, DB row counts.

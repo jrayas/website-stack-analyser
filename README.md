@@ -10,6 +10,8 @@
 | `database/schema.sql` | SQLite schema. |
 | `database/website_analysis.db` | Logged structured results (queryable across all sites/runs). |
 | `database/log_run.py` | The only script that writes to the database. Takes one run as a JSON file. |
+| `database/export_static.py` | Exports the database to `docs/data/*.json` and copies reports into `docs/reports/` for the deployed static site. |
+| `docs/` | Static site (GitHub Pages), lists analysed sites and renders each report by slug (`site.html?slug=<slug>`). Deployed at https://jrayas.github.io/website-stack-analyser/ |
 
 ## Workflow
 
@@ -39,6 +41,13 @@
      Describes the design *system* only — never used to store or reproduce copyrighted
      logos/illustrations/imagery.
 6. `website.md` is reset back to the blank template, ready for the next site.
+7. `python database/export_static.py` regenerates the static site's data, then commit and push
+   so GitHub Pages redeploys automatically.
+
+## Deployment
+
+Repo: https://github.com/jrayas/website-stack-analyser (public)
+Live site: https://jrayas.github.io/website-stack-analyser/ (GitHub Pages, serves `docs/` from `master`)
 
 ## Rules that must hold
 
