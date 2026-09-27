@@ -1,0 +1,182 @@
+{
+  "slug": "vercel.com",
+  "url": "https://vercel.com",
+  "first_seen": "2026-09-27 05:08:29",
+  "notes": null,
+  "runs": [
+    {
+      "id": 4,
+      "access_date": "2026-09-27 05:38:03",
+      "pages_examined": "https://vercel.com homepage, response headers via curl -I -L, full HTML via curl",
+      "limitations": "Public unauthenticated HTTP only; no JS execution; internal platform backend out of scope. Rerun of 2026-09-27 to validate package.json table + trigger workflow.",
+      "overview": "Vercel marketing site: Next.js App Router frontend, Payload CMS, hosted on Vercel platform, Sentry error tracking. Findings consistent with original 2026-09-27 run.",
+      "report_path": "website/vercel.com/2026-09-27-rerun.md",
+      "dependencies": [
+        {
+          "layer": "Frontend framework",
+          "technology": "Next.js (App Router)",
+          "version": null,
+          "evidence": "X-Powered-By: Next.js, Payload header; Vary header lists rsc/next-router-* values, re-observed today",
+          "confidence": "High"
+        },
+        {
+          "layer": "Rendering approach",
+          "technology": "Server-rendered with prerendering/ISR and edge caching",
+          "version": null,
+          "evidence": "X-Nextjs-Prerender: 1, X-Nextjs-Stale-Time: 300, X-Vercel-Cache: HIT, X-Matched-Path headers re-confirmed today",
+          "confidence": "High"
+        },
+        {
+          "layer": "CMS",
+          "technology": "Payload",
+          "version": null,
+          "evidence": "X-Powered-By: Next.js, Payload header re-confirmed today",
+          "confidence": "High"
+        },
+        {
+          "layer": "Hosting",
+          "technology": "Vercel",
+          "version": null,
+          "evidence": "Server: Vercel, X-Vercel-Id, X-Vercel-Cache headers re-confirmed today",
+          "confidence": "High"
+        },
+        {
+          "layer": "Build tooling",
+          "technology": "Turbopack",
+          "version": null,
+          "evidence": "Turbopack-style chunk filename observed in prior pass; not independently re-verified this rerun",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Styling",
+          "technology": "Geist font (self-hosted variable font)",
+          "version": null,
+          "evidence": "CSP font-src allows *.vercel.sh/assets.vercel.com/fonts.gstatic.com; Geist string in prior asset paths",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Analytics",
+          "technology": "Vercel Web Analytics / Speed Insights",
+          "version": null,
+          "evidence": "CSP script-src allows cdn.vercel-insights.com and va.vercel-scripts.com, re-confirmed today",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Testing",
+          "technology": "Sentry (error tracking, not test framework)",
+          "version": null,
+          "evidence": "CSP connect-src allows *.ingest.sentry.io and *.ingest.us.sentry.io, re-confirmed today",
+          "confidence": "Medium"
+        }
+      ],
+      "uncertainties": [
+        {
+          "question": "Exact Next.js/React/Payload versions?",
+          "evidence_needed": "Exposed build manifest, package.json, or source map"
+        },
+        {
+          "question": "Is Payload CMS used for all content or only some sections (blog/changelog)?",
+          "evidence_needed": "Probe multiple content-heavy routes for CMS-related headers or exposed API routes"
+        },
+        {
+          "question": "Is styling Tailwind CSS, CSS Modules, or custom?",
+          "evidence_needed": "Inspect compiled class names in rendered DOM"
+        },
+        {
+          "question": "Purpose of agent-skills/ai-catalog well-known endpoints?",
+          "evidence_needed": "Documentation or further probing of /.well-known/ routes"
+        }
+      ],
+      "js_dependencies": [],
+      "design_tokens": [],
+      "report_url": "reports/vercel.com/2026-09-27-rerun.md"
+    },
+    {
+      "id": 2,
+      "access_date": "2026-09-27 05:08:29",
+      "pages_examined": "https://vercel.com homepage, robots.txt, response headers via curl",
+      "limitations": "Public unauthenticated HTTP only; no browser JS execution beyond parsing server HTML/RSC payload; internal deployment/build platform not visible from public site.",
+      "overview": "Next.js App Router site (X-Powered-By: Next.js, Payload) hosted on Vercel's own platform, with Payload CMS, Turbopack build evidence, Geist font, Vercel Blob storage, Vercel Analytics, and Sentry error tracking.",
+      "report_path": "website/vercel.com/2026-09-27.md",
+      "dependencies": [
+        {
+          "layer": "Frontend framework",
+          "technology": "Next.js (App Router)",
+          "version": null,
+          "evidence": "X-Powered-By: Next.js, Payload header; Vary header includes rsc/next-router-state-tree/next-router-prefetch; self.__next_f marker in HTML; trace-attributes meta next.appdir:true",
+          "confidence": "High"
+        },
+        {
+          "layer": "Rendering approach",
+          "technology": "Server-rendered with prerendering/ISR and edge caching",
+          "version": null,
+          "evidence": "Headers X-Nextjs-Prerender: 1, X-Nextjs-Stale-Time: 300, X-Vercel-Cache: HIT, X-Matched-Path showing precomputed route",
+          "confidence": "High"
+        },
+        {
+          "layer": "CMS",
+          "technology": "Payload",
+          "version": null,
+          "evidence": "X-Powered-By: Next.js, Payload response header explicitly names Payload",
+          "confidence": "High"
+        },
+        {
+          "layer": "Hosting",
+          "technology": "Vercel",
+          "version": null,
+          "evidence": "Server: Vercel header; X-Vercel-Id/X-Vercel-Cache headers; asset paths under /vc-ap-vercel-marketing/_next/static/",
+          "confidence": "High"
+        },
+        {
+          "layer": "Build tooling",
+          "technology": "Turbopack",
+          "version": null,
+          "evidence": "Script chunk filename turbopack-0-hvg4p2ijuk_.js present in homepage script tags",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Styling",
+          "technology": "Geist font (self-hosted variable font)",
+          "version": null,
+          "evidence": "Preloaded Geist_Variable-s.p.2v-cf9syxr5ni.woff2 font file; 'geist' string present in HTML/asset paths",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Analytics",
+          "technology": "Vercel Web Analytics / Speed Insights",
+          "version": null,
+          "evidence": "CSP script-src allow-lists cdn.vercel-insights.com and va.vercel-scripts.com",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Testing",
+          "technology": "Sentry (error tracking, not test framework)",
+          "version": null,
+          "evidence": "CSP connect-src allow-lists *.ingest.sentry.io and *.ingest.us.sentry.io",
+          "confidence": "Medium"
+        }
+      ],
+      "uncertainties": [
+        {
+          "question": "Exact Next.js, React, and Payload CMS versions used?",
+          "evidence_needed": "Would require an exposed build manifest, package.json, or source map."
+        },
+        {
+          "question": "Is Payload CMS used for all content or only specific sections (e.g. blog/changelog)?",
+          "evidence_needed": "Would require probing multiple content routes for consistent CMS-related evidence; /api/ is disallowed in robots.txt so its shape is not publicly documented."
+        },
+        {
+          "question": "Is styling done via Tailwind CSS, CSS Modules, or a custom system?",
+          "evidence_needed": "Would require inspecting compiled class names in rendered DOM."
+        },
+        {
+          "question": "What is the purpose of the /.well-known/agent-skills and ai-catalog endpoints?",
+          "evidence_needed": "Would require fetching and inspecting those well-known JSON files directly."
+        }
+      ],
+      "js_dependencies": [],
+      "design_tokens": [],
+      "report_url": "reports/vercel.com/2026-09-27.md"
+    }
+  ]
+}

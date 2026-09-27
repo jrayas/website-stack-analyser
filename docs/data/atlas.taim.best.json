@@ -1,0 +1,150 @@
+{
+  "slug": "atlas.taim.best",
+  "url": "https://atlas.taim.best/",
+  "first_seen": "2026-09-27 06:29:01",
+  "notes": null,
+  "runs": [
+    {
+      "id": 9,
+      "access_date": "2026-09-27 06:29:01",
+      "pages_examined": "Homepage (HTML + headers), robots.txt (SPA fallback), main JS/CSS bundle text",
+      "limitations": "Public HTTP + static bundle text search only, no browser execution; no backend/API evidence visible, appears fully static/client-rendered",
+      "overview": "Human Atlas: React + Three.js 3D anatomy viewer, Tailwind CSS 4.2.1, built with Vite, served behind Cloudflare",
+      "report_path": "website/atlas.taim.best/2026-09-27.md",
+      "dependencies": [
+        {
+          "layer": "Frontend framework",
+          "technology": "React",
+          "version": "Unknown",
+          "evidence": "Minified bundle contains React scheduler package's exact internal API names (unstable_now, sortIndex, priorityLevel, expirationTime)",
+          "confidence": "High"
+        },
+        {
+          "layer": "UI/component library",
+          "technology": "Three.js",
+          "version": "Unknown",
+          "evidence": "Bundle contains extensive THREE.* namespaced class names matching the site's 3D anatomy viewer purpose",
+          "confidence": "High"
+        },
+        {
+          "layer": "UI/component library",
+          "technology": "Three.js OrbitControls addon",
+          "version": "Unknown",
+          "evidence": "String OrbitControls present in bundle",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Styling",
+          "technology": "Tailwind CSS",
+          "version": "4.2.1",
+          "evidence": "CSS file license comment states exact version directly",
+          "confidence": "High"
+        },
+        {
+          "layer": "Build tooling",
+          "technology": "Vite",
+          "version": "Unknown",
+          "evidence": "Hashed asset filenames (index-[hash].js/.css) and type=module crossorigin script tag match Vite's default production output",
+          "confidence": "High"
+        },
+        {
+          "layer": "UI/component library",
+          "technology": "Lucide icons",
+          "version": "Unknown",
+          "evidence": "String lucide present in bundle",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Rendering approach",
+          "technology": "Client-side rendered SPA",
+          "version": "N/A",
+          "evidence": "Minimal HTML shell (div#root only), non-existent paths fall back to index.html",
+          "confidence": "High"
+        },
+        {
+          "layer": "Hosting",
+          "technology": "Cloudflare (CDN/proxy, origin host unknown)",
+          "version": "N/A",
+          "evidence": "Server: cloudflare, CF-RAY, cf-cache-status headers",
+          "confidence": "High"
+        }
+      ],
+      "uncertainties": [
+        {
+          "question": "Exact React, Three.js, and Vite versions",
+          "evidence_needed": "Exposed package.json, lockfile, or source map - none found in this pass"
+        },
+        {
+          "question": "Whether a React-Three.js integration layer (e.g. react-three-fiber) is used vs raw Three.js API",
+          "evidence_needed": "No r3f-specific hook strings found, but minification makes this inconclusive"
+        },
+        {
+          "question": "Where the 3D anatomical model data is hosted/loaded from",
+          "evidence_needed": "Runtime network request inspection in a browser, not just static bundle text search"
+        },
+        {
+          "question": "Actual origin hosting provider behind Cloudflare",
+          "evidence_needed": "Cloudflare masks the origin server identity"
+        }
+      ],
+      "js_dependencies": [
+        {
+          "layer": "Frontend framework",
+          "npm_package": "react",
+          "suggested_version": "^18.3.0",
+          "description": "Core UI library",
+          "evidence_confidence": "High (library confirmed), Medium (version unverified)",
+          "alternative_package": "preact",
+          "learn_url": "https://react.dev"
+        },
+        {
+          "layer": "UI/component library",
+          "npm_package": "three",
+          "suggested_version": "^0.169.0",
+          "description": "WebGL 3D rendering engine",
+          "evidence_confidence": "High (library confirmed), Low (version unverified)",
+          "alternative_package": "babylonjs",
+          "learn_url": "https://threejs.org"
+        },
+        {
+          "layer": "UI/component library",
+          "npm_package": "@react-three/fiber",
+          "suggested_version": "^8.17.0",
+          "description": "React renderer for Three.js scenes",
+          "evidence_confidence": "Low - no r3f-specific strings found, recommendation only",
+          "alternative_package": "(use raw three.js directly)",
+          "learn_url": "https://r3f.docs.pmnd.rs"
+        },
+        {
+          "layer": "Styling",
+          "npm_package": "tailwindcss",
+          "suggested_version": "4.2.1",
+          "description": "Utility-first CSS framework",
+          "evidence_confidence": "High - exact version confirmed in CSS comment",
+          "alternative_package": "unocss",
+          "learn_url": "https://tailwindcss.com"
+        },
+        {
+          "layer": "Build tooling",
+          "npm_package": "vite",
+          "suggested_version": "^6.0.0",
+          "description": "Frontend build tool",
+          "evidence_confidence": "High (tool confirmed), Low (version unverified)",
+          "alternative_package": "webpack",
+          "learn_url": "https://vite.dev"
+        },
+        {
+          "layer": "UI/component library",
+          "npm_package": "lucide-react",
+          "suggested_version": "^0.460.0",
+          "description": "Icon component library",
+          "evidence_confidence": "Medium",
+          "alternative_package": "@heroicons/react",
+          "learn_url": "https://lucide.dev"
+        }
+      ],
+      "design_tokens": [],
+      "report_url": "reports/atlas.taim.best/2026-09-27.md"
+    }
+  ]
+}

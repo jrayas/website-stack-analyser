@@ -1,0 +1,124 @@
+{
+  "slug": "en.wikipedia.org",
+  "url": "https://en.wikipedia.org/",
+  "first_seen": "2026-09-27 05:58:40",
+  "notes": null,
+  "runs": [
+    {
+      "id": 7,
+      "access_date": "2026-09-27 05:58:40",
+      "pages_examined": "Main Page (full HTML + response headers), robots.txt",
+      "limitations": "Public unauthenticated HTTP requests only; no browser JS execution; internal Wikimedia infra (DB, search backend, job queue) not visible from the public client",
+      "overview": "MediaWiki 1.47.0-wmf.21 with Vector 2022 skin, hosted on Wikimedia Foundation's own infrastructure, exact version confirmed via generator meta tag",
+      "report_path": "website/en.wikipedia.org/2026-09-27.md",
+      "dependencies": [
+        {
+          "layer": "CMS",
+          "technology": "MediaWiki",
+          "version": "1.47.0-wmf.21",
+          "evidence": "meta name=generator tag states exact version directly",
+          "confidence": "High"
+        },
+        {
+          "layer": "Styling",
+          "technology": "Vector 2022 skin",
+          "version": "Unknown",
+          "evidence": "HTML root classes prefixed vector-feature-*, skin-theme-clientpref-day match Vector 2022 naming",
+          "confidence": "High"
+        },
+        {
+          "layer": "Build tooling",
+          "technology": "MediaWiki ResourceLoader",
+          "version": "N/A",
+          "evidence": "RLCONF/RLSTATE global JS objects present in page source",
+          "confidence": "High"
+        },
+        {
+          "layer": "Rendering approach",
+          "technology": "Parsoid HTML rendering",
+          "version": "2.8.0",
+          "evidence": "wgParsoidHtmlVersion in RLCONF",
+          "confidence": "High"
+        },
+        {
+          "layer": "Database",
+          "technology": "Wikibase/Wikidata integration",
+          "version": "N/A",
+          "evidence": "wgWikibaseItemId present in RLCONF, links page to Wikidata item",
+          "confidence": "High"
+        },
+        {
+          "layer": "UI/component library",
+          "technology": "VisualEditor extension",
+          "version": "N/A",
+          "evidence": "wgVisualEditor object present in RLCONF",
+          "confidence": "High"
+        },
+        {
+          "layer": "UI/component library",
+          "technology": "MultimediaViewer extension",
+          "version": "N/A",
+          "evidence": "wgMediaViewerOnClick, wgMediaViewerEnabledByDefault in RLCONF",
+          "confidence": "High"
+        },
+        {
+          "layer": "Authentication",
+          "technology": "ConfirmEdit (hCaptcha backend)",
+          "version": "N/A",
+          "evidence": "wgConfirmEditHCaptchaSiteKey present in RLCONF",
+          "confidence": "High"
+        },
+        {
+          "layer": "Hosting",
+          "technology": "Wikimedia Foundation infrastructure (custom Varnish/ATS caching)",
+          "version": "N/A",
+          "evidence": "Server: mw-web.eqiad.main-* header, x-cache: cp5025 Wikimedia cache-proxy naming, WMF-* cookies",
+          "confidence": "High"
+        },
+        {
+          "layer": "Language",
+          "technology": "Universal Language Selector (ULS)",
+          "version": "N/A",
+          "evidence": "wgULSPosition, wgULSisCompactLinksEnabled etc in RLCONF",
+          "confidence": "High"
+        }
+      ],
+      "uncertainties": [
+        {
+          "question": "Exact Vector skin build and individual extension versions",
+          "evidence_needed": "Only core MediaWiki version is exposed on-page; extension versions are not"
+        },
+        {
+          "question": "Full backend architecture (database engine, search backend, job queue)",
+          "evidence_needed": "Wikimedia engineering documentation, not visible from this HTTP request"
+        },
+        {
+          "question": "Which CSP-allow-listed third-party domains are used by the Main Page vs only available for optional gadgets",
+          "evidence_needed": "CSP allow-list is extremely broad and reflects the whole gadget ecosystem, not just this page"
+        }
+      ],
+      "js_dependencies": [
+        {
+          "layer": "CMS",
+          "npm_package": "N/A",
+          "suggested_version": "N/A",
+          "description": "Real site is MediaWiki (PHP), not an npm package; wiki.js is the closest Node.js-based wiki engine if a JS-stack equivalent is wanted",
+          "evidence_confidence": "High confidence on original stack (PHP), N/A for JS equivalent",
+          "alternative_package": "wiki.js",
+          "learn_url": "https://js.wiki"
+        },
+        {
+          "layer": "UI/component library",
+          "npm_package": "tiptap",
+          "suggested_version": "^2.9.0",
+          "description": "Rich text editor, JS-ecosystem equivalent role to VisualEditor",
+          "evidence_confidence": "Recommendation only",
+          "alternative_package": "prosemirror",
+          "learn_url": "https://tiptap.dev"
+        }
+      ],
+      "design_tokens": [],
+      "report_url": "reports/en.wikipedia.org/2026-09-27.md"
+    }
+  ]
+}

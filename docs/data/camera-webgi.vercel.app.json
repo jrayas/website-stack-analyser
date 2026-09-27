@@ -1,0 +1,185 @@
+{
+  "slug": "camera-webgi.vercel.app",
+  "url": "https://camera-webgi.vercel.app/",
+  "first_seen": "2026-09-27 06:39:15",
+  "notes": null,
+  "runs": [
+    {
+      "id": 11,
+      "access_date": "2026-09-27 06:39:15",
+      "pages_examined": "Homepage (HTML + headers), main JS bundle and CSS bundle text",
+      "limitations": "Public HTTP + static bundle text search only, no browser execution; single-page WebGL demo with no visible backend",
+      "overview": "WEBGi (by Neotix) Three.js product visualization demo, GSAP+ScrollTrigger animation, Parcel bundler, DM Sans font, hosted on Vercel",
+      "report_path": "website/camera-webgi.vercel.app/2026-09-27.md",
+      "dependencies": [
+        {
+          "layer": "UI/component library",
+          "technology": "Three.js",
+          "version": "Unknown",
+          "evidence": "Bundle contains extensive THREE.* class names including DRACOLoader",
+          "confidence": "High"
+        },
+        {
+          "layer": "UI/component library",
+          "technology": "WebGi (by Neotix)",
+          "version": "Unknown",
+          "evidence": "Page meta description explicitly names WEBGi and Neotix; webgi-canvas element present",
+          "confidence": "High"
+        },
+        {
+          "layer": "UI/component library",
+          "technology": "DRACOLoader (glTF compression)",
+          "version": "N/A",
+          "evidence": "THREE.DRACOLoader string present in bundle",
+          "confidence": "High"
+        },
+        {
+          "layer": "UI/component library",
+          "technology": "GSAP + ScrollTrigger",
+          "version": "Unknown",
+          "evidence": "Strings gsap and ScrollTrigger present in bundle, matches scroll-driven UX",
+          "confidence": "High"
+        },
+        {
+          "layer": "Build tooling",
+          "technology": "Parcel",
+          "version": "Unknown",
+          "evidence": "parcelRequire runtime function name found in bundle; hashed filenames follow Parcel's name.hash.ext convention",
+          "confidence": "High"
+        },
+        {
+          "layer": "Styling",
+          "technology": "Google Fonts (DM Sans)",
+          "version": "N/A",
+          "evidence": "link href to fonts.googleapis.com css2 family=DM+Sans with preconnect hints",
+          "confidence": "High"
+        },
+        {
+          "layer": "Frontend framework",
+          "technology": "No JS framework (plain HTML/CSS/JS)",
+          "version": "N/A",
+          "evidence": "Hand-written semantic HTML structure, no React/Vue/Angular fingerprints found beyond Three.js/GSAP/WebGi",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Hosting",
+          "technology": "Vercel",
+          "version": "N/A",
+          "evidence": "Server: Vercel, X-Vercel-Cache, X-Vercel-Id headers",
+          "confidence": "High"
+        }
+      ],
+      "uncertainties": [
+        {
+          "question": "Exact versions of Three.js, WebGi, GSAP, and Parcel",
+          "evidence_needed": "Exposed manifest or source map, none found in this pass"
+        },
+        {
+          "question": "Whether WebGi is used via its public npm package or a custom/licensed build",
+          "evidence_needed": "WebGi is a commercial product; licensing terms not visible from public evidence"
+        },
+        {
+          "question": "Exact 3D model format and source",
+          "evidence_needed": "Likely Draco-compressed glTF/GLB given DRACOLoader, but not directly located in this pass"
+        }
+      ],
+      "js_dependencies": [
+        {
+          "layer": "UI/component library",
+          "npm_package": "three",
+          "suggested_version": "^0.169.0",
+          "description": "WebGL 3D rendering engine",
+          "evidence_confidence": "High (library confirmed), Low (version unverified)",
+          "alternative_package": "babylonjs",
+          "learn_url": "https://threejs.org"
+        },
+        {
+          "layer": "UI/component library",
+          "npm_package": "webgi",
+          "suggested_version": "Unknown (commercial product)",
+          "description": "Product-visualization toolkit built on Three.js",
+          "evidence_confidence": "High (product identity confirmed), N/A (licensing unclear)",
+          "alternative_package": "Custom Three.js scene setup",
+          "learn_url": "https://webgi.xyz"
+        },
+        {
+          "layer": "UI/component library",
+          "npm_package": "gsap",
+          "suggested_version": "^3.12.0",
+          "description": "Animation library with ScrollTrigger plugin",
+          "evidence_confidence": "High (library confirmed), Low (version unverified)",
+          "alternative_package": "framer-motion",
+          "learn_url": "https://gsap.com"
+        },
+        {
+          "layer": "Build tooling",
+          "npm_package": "parcel",
+          "suggested_version": "^2.13.0",
+          "description": "Zero-config web application bundler",
+          "evidence_confidence": "High (tool confirmed), Low (version unverified)",
+          "alternative_package": "vite",
+          "learn_url": "https://parceljs.org"
+        }
+      ],
+      "design_tokens": [
+        {
+          "category": "Typography",
+          "property": "Primary font",
+          "value": "DM Sans (weights 400, 500, 700), sans-serif fallback",
+          "evidence": "font-family in CSS and Google Fonts link with wght@400;500;700",
+          "confidence": "High"
+        },
+        {
+          "category": "Colour",
+          "property": "Brand accent (red)",
+          "value": "#be1921 / #af0d0d / #c42323",
+          "evidence": "Multiple close red hex values found in CSS",
+          "confidence": "High"
+        },
+        {
+          "category": "Colour",
+          "property": "Dark neutral",
+          "value": "#181818 / #3d3d3d",
+          "evidence": "Hex values found in CSS",
+          "confidence": "High"
+        },
+        {
+          "category": "Colour",
+          "property": "Light neutral",
+          "value": "#ffffff / #e1dedf",
+          "evidence": "Hex values found in CSS",
+          "confidence": "High"
+        },
+        {
+          "category": "Colour",
+          "property": "Theme colour (browser UI)",
+          "value": "#d50f0fc3",
+          "evidence": "meta name=theme-color and msapplication-TileColor tags",
+          "confidence": "High"
+        },
+        {
+          "category": "Layout",
+          "property": "Primary layout method",
+          "value": "Flexbox",
+          "evidence": "display: flex found repeatedly in CSS, no Grid usage found",
+          "confidence": "High"
+        },
+        {
+          "category": "Layout",
+          "property": "Responsive breakpoint",
+          "value": "600px",
+          "evidence": "@media (max-width: 600px) found in CSS",
+          "confidence": "High"
+        },
+        {
+          "category": "Other",
+          "property": "Border radius (buttons)",
+          "value": "10px / 50px / 58px",
+          "evidence": "Multiple border-radius values found in CSS",
+          "confidence": "High"
+        }
+      ],
+      "report_url": "reports/camera-webgi.vercel.app/2026-09-27.md"
+    }
+  ]
+}

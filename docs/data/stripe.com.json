@@ -1,0 +1,182 @@
+{
+  "slug": "stripe.com",
+  "url": "https://stripe.com",
+  "first_seen": "2026-09-27 05:08:29",
+  "notes": null,
+  "runs": [
+    {
+      "id": 3,
+      "access_date": "2026-09-27 05:38:03",
+      "pages_examined": "https://stripe.com (redirect to /au), response headers via curl -I -L, robots.txt",
+      "limitations": "Public unauthenticated HTTP only; no JS execution; payments backend out of scope. Rerun of 2026-09-27 to validate package.json table + trigger workflow.",
+      "overview": "Stripe marketing site: Next.js frontend, Contentful CMS, custom nginx edge/CDN, Stripe first-party telemetry. Findings consistent with original 2026-09-27 run.",
+      "report_path": "website/stripe.com/2026-09-27-rerun.md",
+      "dependencies": [
+        {
+          "layer": "Frontend framework",
+          "technology": "Next.js (React)",
+          "version": null,
+          "evidence": "__NEXT_DATA__ blob and buildId hash in HTML; /_next/static/chunks asset paths on b.stripecdn.com",
+          "confidence": "High"
+        },
+        {
+          "layer": "Language",
+          "technology": "JavaScript (compiled, possibly TypeScript source)",
+          "version": null,
+          "evidence": "Hashed webpack-style .js bundles; no source maps checked",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Rendering approach",
+          "technology": "Server-rendered/prerendered marketing pages (mkt-ssr-statics)",
+          "version": null,
+          "evidence": "mkt-ssr-statics asset path prefix; X-Mkt-Cache: HIT header re-observed today",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Build tooling",
+          "technology": "Webpack-style chunked build (Next.js pipeline)",
+          "version": null,
+          "evidence": "Numeric content-hashed chunk filenames",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Styling",
+          "technology": "Self-hosted custom fonts (Sohne, Source Code Pro Medium)",
+          "version": null,
+          "evidence": "Preloaded woff2 font files from b.stripecdn.com",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "CMS",
+          "technology": "Contentful",
+          "version": null,
+          "evidence": "CSP frame-ancestors allows app.contentful.com; img/media-src allow ctfassets.net domains",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Hosting",
+          "technology": "Custom nginx-based edge/proxy with dedicated static CDN (b.stripecdn.com)",
+          "version": null,
+          "evidence": "Server: nginx header; X-Stripe-Proxy-Response, X-Stripe-Server-Rpc-Duration-Micros headers re-observed today",
+          "confidence": "High"
+        },
+        {
+          "layer": "Analytics",
+          "technology": "Stripe first-party telemetry (q.stripe.com, r.stripe.com, increment.com)",
+          "version": null,
+          "evidence": "CSP report-uri/report-to and connect-src allow-list these domains",
+          "confidence": "Medium"
+        }
+      ],
+      "uncertainties": [
+        {
+          "question": "What backend/API framework powers Stripe's actual payments platform?",
+          "evidence_needed": "Access to internal architecture docs or API responses not exposed publicly"
+        },
+        {
+          "question": "Exact Next.js/React version?",
+          "evidence_needed": "Exposed build manifest, package.json, or versioned BUILD_ID"
+        },
+        {
+          "question": "Is Tailwind CSS or another utility framework used?",
+          "evidence_needed": "Inspect compiled class names or CSS source map"
+        },
+        {
+          "question": "Is Contentful used site-wide or only specific sections?",
+          "evidence_needed": "Probe more pages/locales for consistent Contentful CDN asset usage"
+        }
+      ],
+      "js_dependencies": [],
+      "design_tokens": [],
+      "report_url": "reports/stripe.com/2026-09-27-rerun.md"
+    },
+    {
+      "id": 1,
+      "access_date": "2026-09-27 05:08:29",
+      "pages_examined": "https://stripe.com (redirects to /au), robots.txt, rendered homepage HTML/headers",
+      "limitations": "Public unauthenticated HTTP only; no browser JS execution beyond parsing server HTML; payments backend not visible from public site.",
+      "overview": "Next.js-based marketing site served via a custom nginx/edge proxy layer with assets on a dedicated CDN (b.stripecdn.com); CSP evidence suggests Contentful as CMS; Stripe.js and internal analytics (q.stripe.com, r.stripe.com, increment.com) present.",
+      "report_path": "website/stripe.com/2026-09-27.md",
+      "dependencies": [
+        {
+          "layer": "Frontend framework",
+          "technology": "Next.js (React)",
+          "version": null,
+          "evidence": "__NEXT_DATA__ script tag and buildId hash present in homepage HTML; asset paths under /_next/static/chunks/ on b.stripecdn.com",
+          "confidence": "High"
+        },
+        {
+          "layer": "Language",
+          "technology": "JavaScript (compiled, possibly TypeScript source)",
+          "version": null,
+          "evidence": "Hashed webpack-style JS chunk filenames (e.g. 22074.bd02a94640605868.js); TS not directly confirmed",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Rendering approach",
+          "technology": "Server-rendered/prerendered marketing pages (mkt-ssr-statics)",
+          "version": null,
+          "evidence": "Asset path prefix 'mkt-ssr-statics' on all script/font URLs from b.stripecdn.com; fully-formed HTML with meta/OG/hreflang tags in initial response",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Build tooling",
+          "technology": "Webpack-style chunked build (Next.js pipeline)",
+          "version": null,
+          "evidence": "Content-hashed chunk filenames typical of Next.js/webpack output (polyfills-42372ed130431b0a.js)",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Styling",
+          "technology": "Self-hosted custom fonts (Sohne, Source Code Pro Medium)",
+          "version": null,
+          "evidence": "<link rel=preload> for Sohne.cb178166.woff2 and SourceCodePro-Medium.f5ba3e6a.woff2 on b.stripecdn.com",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "CMS",
+          "technology": "Contentful",
+          "version": null,
+          "evidence": "CSP frame-ancestors allow-lists app.contentful.com; img-src/media-src CSP allow ctfassets.net asset domains",
+          "confidence": "Medium"
+        },
+        {
+          "layer": "Hosting",
+          "technology": "Custom nginx-based edge/proxy with dedicated static CDN (b.stripecdn.com)",
+          "version": null,
+          "evidence": "Server: nginx header; X-Stripe-Proxy-Response and X-Stripe-Server-Rpc-Duration-Micros custom headers",
+          "confidence": "High"
+        },
+        {
+          "layer": "Analytics",
+          "technology": "Stripe first-party telemetry (q.stripe.com, r.stripe.com, increment.com)",
+          "version": null,
+          "evidence": "Preconnect/dns-prefetch links to q.stripe.com and r.stripe.com; CSP report-uri to q.stripe.com; CSP connect-src allows c.increment.com",
+          "confidence": "Medium"
+        }
+      ],
+      "uncertainties": [
+        {
+          "question": "What backend/API framework powers Stripe's payments platform?",
+          "evidence_needed": "Not observable from the public marketing site; would require Stripe engineering disclosures or job postings/tech talks."
+        },
+        {
+          "question": "Exact Next.js and React versions used?",
+          "evidence_needed": "Would require an exposed source map, package.json, or version marker in build output."
+        },
+        {
+          "question": "Is Tailwind CSS or another utility framework used for styling?",
+          "evidence_needed": "Would require inspecting compiled DOM class names or a CSS source map."
+        },
+        {
+          "question": "Is Contentful used site-wide or only for specific sections?",
+          "evidence_needed": "Would require probing multiple pages/locales for consistent Contentful asset usage."
+        }
+      ],
+      "js_dependencies": [],
+      "design_tokens": [],
+      "report_url": "reports/stripe.com/2026-09-27.md"
+    }
+  ]
+}
